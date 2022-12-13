@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<title> Math & Physics Lab 2</title>
+<script>
+let x = 50, rwidth = 10, rightWallX = 250, leftWallX = 50;
+let step = 20;
+function draw()
+{
+	let g = c1.getContext("2d");
+	g.clearRect(0, 0, 600, 600);
+	g.fillRect(x,100, rwidth, 10);
+	g.beginPath();
+	g.moveTo(leftWallX, 50);
+	g.lineTo(leftWallX, 250);
+	g.stroke();
+	
+	g.beginPath();
+	g.moveTo(rightWallX, 50);
+	g.lineTo(rightWallX, 250);
+	g.stroke();
+	x+= step;
+	
+	if( (x+ rwidth + step) >= (rightWallX))
+	{
+		console.log("Before ",x);
+		let diff = rightWallX - (x + rwidth);
+		console.log("Diff ",diff);
+		x = rightWallX - (diff + rwidth);
+		step = -Math.abs(step);
+		console.log("After ",x);
+		
+	}
+	else if ( (x + step) <= leftWallX)
+	{
+		let diff = leftWallX - (x);
+		x = leftWallX + (step - diff);
+		step = Math.abs(step);
+	}
+}
+
+</script>
+</head>
+<body onload="setInterval('draw()', 160)">
+<h1> Moving & Bouncing Example 2</h1>
+
+<canvas id="c1" width="600" height="600">
+</canvas><br/>
+
+</body>
+</html>

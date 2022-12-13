@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<title> Math & Physics Lab 2</title>
+<script>
+let startX = 58, rwidth = 10, rightWallX = 250, leftWallX = 50;
+let pixelsPerSecond = 25;
+let startTime = new Date().getTime();
+let secToWall = (rightWallX  - startX - rwidth)/pixelsPerSecond;
+let wallTime = startTime + secToWall*1000;
+function draw()
+{
+	let g = c1.getContext("2d");
+	g.clearRect(0, 0, 600, 600);
+	let newTime = new Date().getTime();
+	
+	let x = startX + (newTime - startTime)/1000* pixelsPerSecond;
+	if(newTime > wallTime)
+	{
+		x = rightWallX - (newTime - wallTime)/1000 * pixelsPerSecond -rwidth;
+	}
+	
+	
+	g.fillRect(x, 100, rwidth, 10);
+	
+	g.beginPath();
+	g.moveTo(rightWallX, 50);
+	g.lineTo(rightWallX, 250);
+	g.stroke();
+
+	
+}
+
+</script>
+</head>
+<body onload="draw();">
+<h1> Moving & Bouncing Example 3</h1>
+
+<input type="button" value="draw" onclick="draw()"/>
+<canvas id="c1" width="400" height="400">
+</canvas><br/>
+
+</body>
+</html>
