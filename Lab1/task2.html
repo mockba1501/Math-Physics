@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<title> Math & Physics Lab 1</title>
+<script>
+function starting()
+{
+	let g = document.getElementById("c1").getContext("2d");
+	g.clearRect(0,0, 600, 600);
+	let x = 100;
+	let y = 50;
+	let inc = 50;
+	let w = parseFloat(document.getElementById("widthbox").value);
+	let h = parseFloat(document.getElementById("heightbox").value);
+	let cx = 400;
+	g.fillStyle = "green";
+	g.fillRect(cx-w/2, cx-h/2, w, h);
+	
+	g.fillRect(20, 30, 40, 50);
+	g.beginPath();
+	g.moveTo(100,50);
+	
+	for(let i = 0; i<5; i++)
+	{
+		x += inc;
+		
+		g.lineTo(x,y);
+		y += inc;
+		g.lineTo(x,y);
+	}
+	//g.lineTo(150,50);
+	//g.lineTo(150,100);
+	//g.lineTo(200,100);
+	g.stroke()
+	
+	g.beginPath();
+	g.arc(100,100,30, 3.14/2, -3.14/2, false);
+	g.stroke();
+}
+
+</script>
+</head>
+<body onload="starting()">
+<h1> Drawing on Canvas</h1>
+
+<canvas id="c1" width="600" height="600">
+</canvas><br/>
+
+<input type="number" id="widthbox" value="100"/>
+<input type="number" id="heightbox" value="50"/>
+<input type="button" id="draw" value="Change Dimensions" onclick="starting()"/>
+
+</body>
+</html>

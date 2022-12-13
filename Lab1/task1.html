@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<title> Math & Physics Lab 1</title>
+<script>
+function calculateCentimeters()
+{
+document.getElementById("answer1").innerHTML = 
+	document.getElementById("box1").value*2.54;
+}
+function calculateDollarsToSwedish()
+{
+document.getElementById("answer2").innerHTML = 
+	document.getElementById("box2").value*10.793039 ;
+}
+function calculateSwedishToDollars()
+{
+document.getElementById("answer3").innerHTML = 
+	document.getElementById("box3").value*0.0926289 ;
+}
+</script>
+</head>
+<body>
+<h1> Calculations</h1>
+<h2> Measurment calculations </h2>
+Inches:
+<input type="number" id="box1" />
+<input type="button" value="to cm" onclick="calculateCentimeters()" />
+<span id="answer1">?</span>
+
+<h2> FX Exchange </h2>
+US Dollars
+<input type="number" id="box2" />
+<input type="button" value="to Swedish" onclick="calculateDollarsToSwedish()" />
+<span id="answer2">?</span>
+<p>
+Swedish
+<input type="number" id="box3" />
+<input type="button" value="to US Dollar" onclick="calculateSwedishToDollars()" />
+<span id="answer3">?</span>
+</body>
+</html>
