@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<title> Math & Physics Lab 3</title>
+<script>
+
+let startTime = Date.now();
+let x = 60, y, startY = 5, startSpeed = 0;
+let grav = -9.8;
+let groundTime = startTime + 1000* Math.sqrt(Math.abs(2*startY/grav));
+let timeToGround = Math.sqrt(Math.abs(2*startY/grav));
+let dt = 100;
+let ground = 250, pixelsToMeters = 30;
+
+function draw()
+{
+	let g = c1.getContext("2d");
+	g.clearRect(0, 0, 600, 600);
+	let newTime = Date.now();
+	let t = (newTime - startTime)/1000;
+	y = startY + startSpeed*t + grav*Math.pow(t, 2)/2;
+	
+	if(newTime>groundTime)
+	{
+		startTime = groundTime;
+		startY = 0;
+		startSpeed = -timeToGround*grav;
+		groundTime += 2 * timeToGround *1000;
+	}
+	console.log(y);
+	g.fillRect(x,ground - pixelsToMeters*y-10, 10, 10);
+	g.fillRect(0,ground, 300, 5);
+
+	requestAnimationFrame(draw);
+	
+	//old
+	//<body onload="setInterval('draw()',dt);">
+}
+
+</script>
+</head>
+<body onload="draw()">
+<h1> Accelaration Example 2</h1>
+
+<canvas id="c1" width="600" height="600">
+</canvas><br/>
+
+</body>
+</html>
