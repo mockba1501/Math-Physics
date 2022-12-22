@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<title> Math & Physics Lab 4</title>
+<script>
+// 1) Experiment with different values
+// 2) Try with both positive speeds, but different values
+// 3) Add wall (or two) and elastic bounce with force calculation
+
+let m1 = 5, m2 = 2;
+let x1 = 2, x2 = 6;
+let v1 = 10, v2 = 2;
+let r=1;
+let pixelsPerMeter = 30;
+let startTime = Date.now();
+
+function draw()
+{
+	let g = c1.getContext("2d");
+	g.clearRect(0, 0, 600, 600);
+	
+	let currentTime = Date.now();
+	let deltaTime = (currentTime - startTime)/1000.0;
+	
+	let distance = x2-x1;
+	let force = 0;
+	
+	if(distance < 2)
+	{
+		force = 3*(2-distance);
+	}
+	//calculation of delta speed using the force
+	let dv1 = -force * deltaTime/m1;
+	let dv2 = force * deltaTime/m2;
+	
+	v1 += dv1;
+	v2 += dv2;
+	
+	x1 += deltaTime*v1;
+	x2 += deltaTime*v2;
+	
+	g.fillRect(pixelsPerMeter*(x1-r), 100, pixelsPerMeter*2*r, m1*10);
+	g.fillRect(pixelsPerMeter*(x2-r), 100, pixelsPerMeter*2*r, m2*10);
+	
+		
+	requestAnimationFrame(draw);
+	startTime = currentTime;
+}
+
+</script>
+</head>
+<body onload="draw()">
+<h1> Force collision Example 1</h1>
+
+<canvas id="c1" width="600" height="600">
+</canvas><br/>
+
+</body>
+</html>
